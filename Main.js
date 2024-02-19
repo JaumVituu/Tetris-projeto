@@ -7,33 +7,28 @@ var larguraLinha = 10;
 var fps = 60;
 
 ctx.lineWidth = larguraLinha;
-ctx.beginPath();
-ctx.moveTo(window.innerWidth/2 - larguraLinha - tamanhoTela[0]/2, 25-larguraLinha);
-ctx.lineTo(window.innerWidth/2 - larguraLinha - tamanhoTela[0]/2, 25 +tamanhoTela[1] + larguraLinha);
-ctx.lineTo(window.innerWidth/2 + larguraLinha + tamanhoTela[0]/2, 25 +tamanhoTela[1] + larguraLinha);
-ctx.lineTo(window.innerWidth/2 + larguraLinha + tamanhoTela[0]/2, 25 - larguraLinha);
-ctx.lineTo(window.innerWidth/2 - larguraLinha*1.5 - tamanhoTela[0]/2, 25 -larguraLinha);
-
-var peca = new Peca();
+ctx.strokeStyle = "black";
+ctx.strokeRect(ctx.canvas.width/2 - tamanhoTela[0]/2 - larguraLinha, ctx.canvas.heigth + 200 - larguraLinha, tamanhoTela[0], tamanhoTela[1]);
 var x = 0;
+var peca = new Peca(x,ctx);
 
-peca.DesenharPeca(ctx,0);
+peca.DesenharPeca();
 
-//function Atualizar(){
-    console.log("Teste");
-    document.addEventListener('keydown', event => {
-        if(event.keyCode == 32){
+function Atualizar(){
+    //document.addEventListener('keydown', event => {
+       // if(event.keyCode == 32){
             ctx.clearRect(0,0,200,200);
             x++;
             if(x > 6){
                 x = 0;
             }
-            console.log(x);
-            peca.DesenharPeca(ctx,x);
-        }
-    })
-//}
+            console.log(peca.AtualizarPeca(x));
+            
+            peca.DesenharPeca();
+        //}
+    //})
+}
 
 
-//setInterval(Atualizar, 1000/fps);
+setInterval(Atualizar, 1000);
 ctx.stroke();

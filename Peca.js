@@ -1,5 +1,7 @@
 class Peca{
-    
+    tipo;
+    contexto;
+
     PECA = [    [   [0,1,0],
                     [1,1,1]
                 ],
@@ -29,6 +31,8 @@ class Peca{
                     [7,7]
                 ]
             ];
+
+    pecaAtual = [];
     
     COR =  ["blue",
             "orangered",
@@ -39,15 +43,30 @@ class Peca{
             "magenta"
            ];
 
-    constructor(){
+    constructor(peca,ctx){
+        this.tipo = peca;
+        this.contexto = ctx;
+        this.pecaAtual = this.PECA[this.tipo];
+
+    }
+    
+    AtualizarPeca(peca){
+        this.tipo = peca;
+        this.pecaAtual = this.PECA[this.tipo];
+        //console.log(this.pecaAtual);
+        return this.pecaAtual;
     }
 
-    DesenharPeca(ctx,peca){
-        for(var i = 0; i < this.PECA[peca].length; i++){
-            for(var j = 0; j < this.PECA[peca][i].length; j++){
-                if(this.PECA[peca][i][j] != 0){
-                    ctx.fillStyle = this.COR[this.PECA[peca][i][j] - 1];
-                    ctx.fillRect(i*20,j*20, 20, 20);
+    DesenharPeca(){
+        // console.log(this.pecaAtual);
+        for(var i = 0; i < this.PECA[this.tipo].length; i++){
+            for(var j = 0; j < this.PECA[this.tipo][i].length; j++){
+                if(this.PECA[this.tipo][i][j] != 0){
+                    this.contexto.fillStyle = this.COR[this.PECA[this.tipo][i][j] - 1];
+                    this.contexto.lineWidth = 2;
+                    this.contexto.strokeStyle = "white";
+                    this.contexto.fillRect(i*20,j*20, 20, 20);
+                    this.contexto.strokeRect(i*20,j*20, 20, 20);
                 }
             }
         }
