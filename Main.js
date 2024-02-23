@@ -13,22 +13,33 @@ var x = 0;
 var peca = new Peca(x,ctx);
 
 peca.DesenharPeca();
+// function Atualizar(){
+//     document.addEventListener('keydown', event => {
+//        if(event.keyCode == 32){
+//             ctx.clearRect(0,0,200,200);
+//             x++;
+//             if(x > 6){
+//                 x = 0;
+//             }
+//             peca.GirarPeca(); 
+//         }
+//     })
+// }
 
-function Atualizar(){
-    //document.addEventListener('keydown', event => {
-       // if(event.keyCode == 32){
-            ctx.clearRect(0,0,200,200);
-            x++;
-            if(x > 6){
-                x = 0;
-            }
-            console.log(peca.AtualizarPeca(x));
-            
-            peca.DesenharPeca();
-        //}
-    //})
-}
+document.addEventListener('keydown', event => {
+    if(event.keyCode == 32){
+        ctx.clearRect(0, 0, 200, 200);
+        x++;
+        if (x > 6) {
+            x = 0;
+        }
+        peca.GirarPeca(); 
+    }
+    if(event.keyCode == 68){
+        peca.MoverPeca(1,0);
+    }
+ })
 
 
-setInterval(Atualizar, 1000);
+//setInterval(Atualizar, 1000);
 ctx.stroke();
